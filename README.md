@@ -1,3 +1,6 @@
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.5943312.svg)](https://doi.org/10.5281/zenodo.5943312)
+
+
 # Supplemental Code: "Third Wave Materiality: Digital Excavation of Homemade Facemask Production during the COVID-19 Pandemic"
 
 The code and data in this repository can be used to reproduce the analysis from Magnani, Clindaniel, and Magnani (Under Review) "Third Wave Materiality: Digital Excavation of Homemade Facemask Production during the COVID-19 Pandemic."
