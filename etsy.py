@@ -1,5 +1,6 @@
 # Functions for performing analysis in the article
-# "Third Wave Materiality: Digital Excavation of Homemade Facemask Production
+# "Material Culture Studies in the Age of Big Data:
+# Digital Excavation of Homemade Facemask Production
 # during the COVID-19 Pandemic"
 #
 # Code Written By: Jon Clindaniel
@@ -331,6 +332,74 @@ def plot_pct_by_state_date(pct, terms_name, shp_df,
 
     if save_fig:
         file_name = terms_name + '_diachronic' + '.tiff'
+        fig.savefig(file_name, dpi=300, format="tiff", bbox_inches="tight",
+                    pil_kwargs={"compression": "tiff_lzw"})
+
+
+def plot_2020_electoral_map(shp_df, save_fig=False):
+    '''
+    Plots states won by Biden (in blue) and those won by Trump (in red) in
+    the 2020 U.S. Presidential Election.
+
+    Input: `geopandas` dataframe of U.S. state polygons (`shp_df`), as well as
+    an indication of whether (boolean) to save as a high-resolution figure for
+    publication (`save_fig`).
+
+    Output: returns nothing, but produces map indicating states won by Biden v.
+    Trump. Note as well that the function modifies shp_df *in place* to include
+    a column indicating whether state voted for Trump (True/False), and another
+    column (str) indicating that a state 'Voted for Trump' or 'Voted for Biden'
+    '''
+    fig, ax = plt.subplots(figsize=(10, 10))
+
+    # True if voted Trump, False if voted Biden
+    shp_df.loc[:, 'voted_trump'] = shp_df.loc[:, 'NAME'].isin(trump)
+
+    # Create categorical Labels for legend
+    f = lambda x: 'Voted for Trump' if x else 'Voted for Biden'
+    shp_df.loc[:, 'pres_elec_2020'] = shp_df.loc[:, 'voted_trump'].apply(f)
+
+    # First plot lower 48 states
+    states_48 = shp_df[~shp_df['NAME'].isin(['Alaska',
+                                             'Hawaii',
+                                             'Puerto Rico'])]
+
+    plot = states_48.plot(column='pres_elec_2020',
+                          cmap='coolwarm',
+                          ax=ax,
+                          categorical=True,
+                          legend=True) \
+                    .axis('off')
+    leg = ax.get_legend()
+    leg.set_bbox_to_anchor((0., 0., 1.025, 0.25))
+    leg.set_title('Presidential Election 2020')
+
+    # Plot Alaska and Hawaii in the lower left corner of US Map
+    axins = zoomed_inset_axes(ax, .3, loc=3, bbox_to_anchor=(0,-.05),
+                              bbox_transform=ax.transAxes)
+    axins2 = zoomed_inset_axes(ax, 1, loc=3, bbox_to_anchor=(.18,-.075),
+                               bbox_transform=ax.transAxes)
+
+    minx,miny,maxx,maxy =  (-178, 46, -135, 73) # Alaska
+    axins.set_xlim(minx, maxx)
+    axins.set_ylim(miny, maxy)
+
+    minx,miny,maxx,maxy =  (-162, 15, -152, 25) # Hawaii
+    axins2.set_xlim(minx, maxx)
+    axins2.set_ylim(miny, maxy)
+
+    # Plot zoom window
+    shp_df.loc[(shp_df['STUSPS'] == "AK")] \
+                   .plot(column='voted_trump', cmap='coolwarm', vmin=False,
+                         ax=axins) \
+                   .axis('off')
+    shp_df.loc[(shp_df['STUSPS'] == "HI")] \
+                   .plot(column='voted_trump', cmap='coolwarm', vmin=False,
+                         ax=axins2) \
+                   .axis('off')
+
+    if save_fig:
+        file_name = '2020_US_electoral_map.tiff'
         fig.savefig(file_name, dpi=300, format="tiff", bbox_inches="tight",
                     pil_kwargs={"compression": "tiff_lzw"})
 

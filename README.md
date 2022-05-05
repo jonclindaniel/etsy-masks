@@ -1,14 +1,14 @@
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.5943312.svg)](https://doi.org/10.5281/zenodo.5943312)
 
 
-# Supplemental Code: "Third Wave Materiality: Digital Excavation of Homemade Facemask Production during the COVID-19 Pandemic"
+# Supplemental Code: "Material Culture Studies in the Age of Big Data: Digital Excavation of Homemade Facemask Production during the COVID-19 Pandemic"
 
-The code and data in this repository can be used to reproduce the analysis from Magnani, Clindaniel, and Magnani (Under Review) "Third Wave Materiality: Digital Excavation of Homemade Facemask Production during the COVID-19 Pandemic."
+The code and data in this repository can be used to reproduce the analysis from Magnani, Clindaniel, and Magnani (Under Review) "Material Culture Studies in the Age of Big Data: Digital Excavation of Homemade Facemask Production during the COVID-19 Pandemic."
 
 The code is written in Python 3.9.7 and all of its dependencies can be installed by running the following in the terminal (with the `requirements.txt` file included in this repository):
 
 
-```python
+```bash
 pip install -r requirements.txt
 ```
 
@@ -28,7 +28,22 @@ df[['state', 'lemmas', 'tokens']].tail()
 ```
 
 
+
+
 <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -148,7 +163,20 @@ etsy.plot_pct_by_state_date(int_eff_state_date,
 
 
 
-If we then want to interpret whether voting patterns are related to the use of certain material characteristics, we can filter states by the 2020 presidential candidates who carried each state (provided in the `etsy` module) and use the `plot_pct_by_vote` function to compare the material characteristics of masks in Trump-voting states versus those that voted for Biden:
+If we then want to interpret whether voting patterns are related to the use of certain material characteristics, we can visually compare our maps above to a state-level electoral map of the 2020 U.S. presidential election:
+
+
+```python
+etsy.plot_2020_electoral_map(states)
+```
+
+
+
+![png](README_files/output_15_0.png)
+
+
+
+Alternatively, we can filter states by the 2020 presidential candidate who carried each state (provided in the `etsy` module) and use the `plot_pct_by_vote` function to directly compare the material characteristics of masks in Trump-voting states versus those that voted for Biden:
 
 
 ```python
@@ -160,7 +188,7 @@ etsy.plot_pct_by_vote(biden, trump, "'Intentionally Effective' Material Characte
 
 
 
-![png](README_files/output_15_0.png)
+![png](README_files/output_17_0.png)
 
 
 
@@ -188,13 +216,13 @@ etsy.plot_pct_by_state_date(etsy.pct_match(etsy.intentionality_ineff, df,
 
 
 
-![png](README_files/output_17_0.png)
+![png](README_files/output_19_0.png)
 
 
 
 
 
-![png](README_files/output_17_1.png)
+![png](README_files/output_19_1.png)
 
 
 
@@ -210,7 +238,7 @@ etsy.plot_pct_by_vote(biden, trump, "'Intentionally Ineffective' Material Charac
 
 
 
-![png](README_files/output_18_0.png)
+![png](README_files/output_20_0.png)
 
 
 
@@ -231,13 +259,13 @@ etsy.plot_pct_by_state_date(etsy.pct_match(etsy.mesh,
 
 
 
-![png](README_files/output_20_0.png)
+![png](README_files/output_22_0.png)
 
 
 
 
 
-![png](README_files/output_20_1.png)
+![png](README_files/output_22_1.png)
 
 
 
@@ -256,13 +284,13 @@ etsy.plot_pct_by_state_date(etsy.pct_match(etsy.antimask,
 
 
 
-![png](README_files/output_21_0.png)
+![png](README_files/output_23_0.png)
 
 
 
 
 
-![png](README_files/output_21_1.png)
+![png](README_files/output_23_1.png)
 
 
 
@@ -285,13 +313,13 @@ etsy.plot_pct_by_state_date(etsy.pct_match(etsy.unintentionality_ineff,
 
 
 
-![png](README_files/output_23_0.png)
+![png](README_files/output_25_0.png)
 
 
 
 
 
-![png](README_files/output_23_1.png)
+![png](README_files/output_25_1.png)
 
 
 
@@ -307,4 +335,4 @@ etsy.plot_pct_by_vote(biden, trump, "'Unintentionally Ineffective' Material Char
 
 
 
-![png](README_files/output_24_0.png)
+![png](README_files/output_26_0.png)
