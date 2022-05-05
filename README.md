@@ -27,23 +27,6 @@ df, states = etsy.process_data()
 df[['state', 'lemmas', 'tokens']].tail()
 ```
 
-
-
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -86,9 +69,6 @@ df[['state', 'lemmas', 'tokens']].tail()
     </tr>
   </tbody>
 </table>
-</div>
-
-
 
 Included in the `etsy` module are lists of the keywords that we used in the article to identify products with material characteristics that are "intentionally effective" (i.e. following CDC guidelines), those that are indicative of "intentionally ineffective" material characteristics (anti-mask production), and finally a list of potentially "unintentionally ineffective" material characteristics. Note that the lists include both multi-word combinations ("bigrams") as well as single word tokens.
 
