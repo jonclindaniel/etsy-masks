@@ -3,7 +3,7 @@
 
 # Supplemental Code: "Material Culture Studies in the Age of Big Data: Digital Excavation of Homemade Facemask Production during the COVID-19 Pandemic"
 
-The code and data in this repository can be used to reproduce the analysis from Magnani, Clindaniel, and Magnani (Under Review) "Material Culture Studies in the Age of Big Data: Digital Excavation of Homemade Facemask Production during the COVID-19 Pandemic."
+The code and data in this repository can be used to reproduce the analysis from [Magnani, Clindaniel, and Magnani (2022) "Material Culture Studies in the Age of Big Data: Digital Excavation of Homemade Facemask Production during the COVID-19 Pandemic."](https://doi.org/10.1017/aaq.2022.58)
 
 The code is written in Python 3.9.7 and all of its dependencies can be installed by running the following in the terminal (with the `requirements.txt` file included in this repository):
 
